@@ -112,6 +112,33 @@ function socketConnection(socket) {
 				log('disconnection', { 'board': board.name, 'users': board.users.size });
 				if (userCount === 0) {
 					board.save();
+
+					const axios = require('axios');
+					history_file = "../server-data/board-" + board.name + ".json";
+					// var json = $.getJSON("server-data/board-" + board.name + ".json", function(json) {
+					// 	console.log(json); // this will show the info it in firebug console
+					// });
+					let json = require(history_file);
+					var taskId = board.name;
+					// var state = JSON.parse(json);
+					var url = `http://localhost:8080/taskSessions/` + board.name + `/tool_state/whiteboard`
+					var data = {
+						taskSessionId: taskId,
+						status: json,
+						name: board.name,
+						type: "whiteboard"
+					};
+					var headers = {
+						"Token": 'whiteboard_status'
+					};
+					axios.post(url, data, {
+							headers: headers
+						})
+						.then(function (response) {
+							console.log(response);
+						})
+					
+						log('send state', {'taskSessionId': taskId});
 					delete boards[room];
 				}
 			}

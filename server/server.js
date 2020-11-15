@@ -24,7 +24,7 @@ var WEBROOT = path.join(__dirname, "../client-data");
  * @const
  * @type {number}
  */
-var PORT = parseInt(process.env['PORT']) || 8080;
+var PORT = parseInt(process.env['PORT']) || 8090;
 
 /**
  * Associations from language to translation dictionnaries
