@@ -120,11 +120,12 @@ function socketConnection(socket) {
 					// });
 					let json = require(history_file);
 					var taskId = board.name;
-					// var state = JSON.parse(json);
+					var state = JSON.stringify(json);
+					console.log(state.toString());
 					var url = `http://localhost:8080/taskSessions/` + board.name + `/tool_state/whiteboard`
 					var data = {
 						taskSessionId: taskId,
-						status: json,
+						status: state.toString(),
 						name: board.name,
 						type: "whiteboard"
 					};
