@@ -9,7 +9,8 @@
     "axios": "^0.21.0",
     "handlebars": "^4.7.6",
     "serve-static": "^1.14.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "dotenv": "^8.2.0"
   },
   "scripts": {
     "start": "node ./server/server.js",
