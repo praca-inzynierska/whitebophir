@@ -114,15 +114,14 @@ function socketConnection(socket) {
 					board.save();
 
 					const axios = require('axios');
+					const fs = require('fs');
+					var https = require('https');
 					history_file = "../server-data/board-" + board.name + ".json";
-					// var json = $.getJSON("server-data/board-" + board.name + ".json", function(json) {
-					// 	console.log(json); // this will show the info it in firebug console
-					// });
 					let json = require(history_file);
 					var taskId = board.name;
 					var state = JSON.stringify(json);
 					console.log(state.toString());
-					var url = `http://localhost:8080/taskSessions/` + board.name + `/tool_state/whiteboard`
+					var url = `https://localhost:8443/taskSessions/` + board.name + `/tool_state/whiteboard`
 					var data = {
 						taskSessionId: taskId,
 						status: state.toString(),
@@ -133,7 +132,10 @@ function socketConnection(socket) {
 						"Token": 'whiteboard_status'
 					};
 					axios.post(url, data, {
-							headers: headers
+							headers: headers,
+							httpsAgent: new https.Agent({
+								rejectUnauthorized: false
+							  })
 						})
 						.then(function (response) {
 							console.log(response);
