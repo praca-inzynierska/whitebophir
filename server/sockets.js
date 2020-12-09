@@ -112,36 +112,7 @@ function socketConnection(socket) {
 				log('disconnection', { 'board': board.name, 'users': board.users.size });
 				if (userCount === 0) {
 					board.save();
-
-					const axios = require('axios');
-					const fs = require('fs');
-					var https = require('https');
-					history_file = "../server-data/board-" + board.name + ".json";
-					let json = require(history_file);
-					var taskId = board.name;
-					var state = JSON.stringify(json);
-					console.log(state.toString());
-					var url = `https://localhost:8443/taskSessions/` + board.name + `/tool_state/whiteboard`
-					var data = {
-						taskSessionId: taskId,
-						status: state.toString(),
-						name: board.name,
-						type: "whiteboard"
-					};
-					var headers = {
-						"Token": 'whiteboard_status'
-					};
-					axios.post(url, data, {
-							headers: headers,
-							httpsAgent: new https.Agent({
-								rejectUnauthorized: false
-							  })
-						})
-						.then(function (response) {
-							console.log(response);
-						})
-					
-						log('send state', {'taskSessionId': taskId});
+					board.sendState();
 					delete boards[room];
 				}
 			}

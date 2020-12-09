@@ -156,6 +156,39 @@ BoardData.prototype.delaySave = function (file) {
 	if (Date.now() - this.lastSaveDate > MAX_SAVE_DELAY) setTimeout(this.save.bind(this), 0);
 };
 
+/** Gets the state of whiteboard.
+ * @param {string} [file=this.file] - Path to the file where the board data will be saved.
+*/
+BoardData.prototype.sendState = function(file) {
+	const axios = require('axios');
+	var https = require('https');
+	var taskId = this.name;
+	var status = JSON.stringify(this.board).toString();
+	var url = `https://localhost:8443/taskSessions/` + taskId + `/tool_state/whiteboard`
+	
+	var data = {
+		taskSessionId: taskId,
+		status: status,
+		name: this.name,
+		type: "whiteboard"
+	};
+	var headers = {
+		"Token": 'whiteboard_status'
+	};
+	
+	axios.post(url, data, {
+			headers: headers,
+			httpsAgent: new https.Agent({
+				rejectUnauthorized: false
+				})
+		})
+		.then(function (response) {
+			console.log(response);
+		})
+	
+	log('send state', {'taskSessionId': taskId, 'status': status});
+}
+
 /** Saves the data in the board to a file.
  * @param {string} [file=this.file] - Path to the file where the board data will be saved.
 */
