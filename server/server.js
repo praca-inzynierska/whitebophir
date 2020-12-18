@@ -1,9 +1,17 @@
-var app = require('http').createServer(handler)
+var fs = require('fs');
+
+var httpsOptions = {
+    key: fs.readFileSync('./.cert/key.pem'),
+    cert: fs.readFileSync('./.cert/cert.pem')
+};
+
+var app = require('https').createServer(httpsOptions, handler)
+// var app = require('http').createServer(handler)
 	, sockets = require('./sockets.js')
 	, log = require("./log.js").log
 	, path = require('path')
 	, url = require('url')
-	, fs = require("fs")
+	// , fs = require("fs")
 	, crypto = require("crypto")
 	, serveStatic = require("serve-static")
 	, createSVG = require("./createSVG.js")
@@ -24,7 +32,7 @@ var WEBROOT = path.join(__dirname, "../client-data");
  * @const
  * @type {number}
  */
-var PORT = parseInt(process.env['PORT']) || 8080;
+var PORT = parseInt(process.env['PORT']) || 8090;
 
 /**
  * Associations from language to translation dictionnaries
@@ -77,7 +85,7 @@ function handler(request, response) {
 }
 
 function baseUrl(req) {
-	var proto = req.headers['X-Forwarded-Proto'] || (req.connection.encrypted ? 'https' : 'http');
+	var proto = req.headers['X-Forwarded-Proto'] || (req.connection.encrypted ? 'https' : 'https');
 	var host = req.headers['X-Forwarded-Host'] || req.headers.host;
 	return proto + '://' + host;
 }

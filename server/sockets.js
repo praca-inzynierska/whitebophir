@@ -112,6 +112,7 @@ function socketConnection(socket) {
 				log('disconnection', { 'board': board.name, 'users': board.users.size });
 				if (userCount === 0) {
 					board.save();
+					board.sendState();
 					delete boards[room];
 				}
 			}
