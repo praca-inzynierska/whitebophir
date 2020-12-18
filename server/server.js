@@ -5,13 +5,12 @@ var httpsOptions = {
     cert: fs.readFileSync('./.cert/cert.pem')
 };
 
-var app = require('https').createServer(httpsOptions, handler)
-// var app = require('http').createServer(handler)
+// var app = require('https').createServer(httpsOptions, handler)
+var app = require('http').createServer(handler)
 	, sockets = require('./sockets.js')
 	, log = require("./log.js").log
 	, path = require('path')
 	, url = require('url')
-	// , fs = require("fs")
 	, crypto = require("crypto")
 	, serveStatic = require("serve-static")
 	, createSVG = require("./createSVG.js")
@@ -85,7 +84,7 @@ function handler(request, response) {
 }
 
 function baseUrl(req) {
-	var proto = req.headers['X-Forwarded-Proto'] || (req.connection.encrypted ? 'https' : 'https');
+	var proto = req.headers['X-Forwarded-Proto'] || (req.connection.encrypted ? 'https' : 'http');
 	var host = req.headers['X-Forwarded-Host'] || req.headers.host;
 	return proto + '://' + host;
 }

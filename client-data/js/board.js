@@ -440,17 +440,14 @@ Tools.positionElement = function (elem, x, y) {
 };
 
 Tools.colorPresets = [
-	{ color: "#001f3f", key: '1' },
+	{ color: "#000000", key: '1' },
 	{ color: "#FF4136", key: '2' },
 	{ color: "#0074D9", key: '3' },
 	{ color: "#FF851B", key: '4' },
 	{ color: "#FFDC00", key: '5' },
-	{ color: "#3D9970", key: '6' },
-	{ color: "#91E99B", key: '7' },
-	{ color: "#B10DC9", key: '8' },
-	{ color: "#7FDBFF", key: '9' },
-	{ color: "#AAAAAA", key: '0' },
-	{ color: "#01FF70" }
+	{ color: "#008000", key: '6' },
+	{ color: "#B10DC9", key: '7' },
+	{ color: "#AAAAAA", key: '8' }
 ];
 
 Tools.color_chooser = document.getElementById("chooseColor");
