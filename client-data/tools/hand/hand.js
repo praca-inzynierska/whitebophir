@@ -45,7 +45,7 @@
 	}
 
 	Tools.add({ //The new tool
-		"name": "Hand",
+		"name": "Kadruj",
 		"icon": "✋",
 		"shortcut": "h",
 		"listeners": {

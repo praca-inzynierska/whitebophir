@@ -127,7 +127,7 @@
 	}
 
 	Tools.add({ //The new tool
-		"name": "Rectangle",
+		"name": "Prostokąt",
 		"icon": "▢",
 		"shortcut": "r",
 		"listeners": {

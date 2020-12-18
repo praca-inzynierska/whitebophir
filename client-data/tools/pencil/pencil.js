@@ -185,7 +185,7 @@
 	}
 
 	Tools.add({ //The new tool
-		"name": "Pencil",
+		"name": "Ołówek",
 		"icon": "✏",
 		"shortcut": "p",
 		"listeners": {

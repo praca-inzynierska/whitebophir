@@ -121,7 +121,7 @@
 	}
 
 	Tools.add({ //The new tool
-		"name": "Straight line",
+		"name": "Prosta",
 		"icon": "☇",
 		"shortcut": "l",
 		"listeners": {

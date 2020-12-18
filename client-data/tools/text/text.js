@@ -160,7 +160,7 @@
 	}
 
 	Tools.add({ //The new tool
-		"name": "Text",
+		"name": "Tekst",
 		"icon": "T",
 		"shortcut": "t",
 		"listeners": {

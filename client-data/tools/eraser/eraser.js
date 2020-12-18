@@ -76,7 +76,7 @@
 	var svg = Tools.svg;
 
 	Tools.add({ //The new tool
-		"name": "Eraser",
+		"name": "Gumka",
 		"icon": "❌",
 		"shortcut": "e",
 		"listeners": {
